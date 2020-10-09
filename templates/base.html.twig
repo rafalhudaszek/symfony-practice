@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+
+        {% block stylesheets %}
+            <link href="{{ asset('CSS/styles.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff6e6; font-size: 1.4em" >
+            <a class="navbar-brand" style="font-size: 1.8em; padding-left: 3vw" href="{{ path('main') }}">R</a>
+
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" style="padding-right: 2vw">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('main') }}">Złote myśli</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('registration') }}">Rejestracja <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if is_granted('IS_ANONYMOUS') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_login') }}">Logowanie <span class="sr-only">(current)</span></a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj<span class="sr-only">(current)</span></a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div id="logo">Ten projekt gromadzi cytaty, sentencje i maksymy,<br> które wyszły spod pióra największych myślicieli tego świata.</div>
+            </div>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+                <div class="alert alert-warning">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-error">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </div>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

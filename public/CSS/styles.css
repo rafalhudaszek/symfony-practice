@@ -1,0 +1,27 @@
+
+.navbar
+{
+    background-color: #5eb5e0 !important;
+}
+
+img
+{
+    max-width: 300px;
+}
+
+.row
+{
+    border: dotted 2px black;
+    max-width: 1200px;
+}
+.overflow-auto
+{
+    max-height: 40vh;
+}
+@media (min-width: 1920px)
+{
+    .container
+    {
+        min-width: 1440px !important;
+    }
+}
