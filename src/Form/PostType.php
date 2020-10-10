@@ -22,7 +22,11 @@ class PostType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class
             ])
-            ->add('save', SubmitType::class)
+            ->add('Zapisz', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-success float-right',
+                ]
+            ])
         ;
     }
 

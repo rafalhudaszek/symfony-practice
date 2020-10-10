@@ -1,27 +1,94 @@
+body
+{
+    font-size: 24px;
+    margin: 0 !important;
+    background-color: #DDDDDD;
+}
+
 
 .navbar
 {
-    background-color: #5eb5e0 !important;
+
+    box-shadow: 0px 1px 15px #666;
+    transition: background-color 1s ease 0s;
 }
 
-img
+.navbar.solid
+{
+    transition: background-color 1s ease 0s;
+}
+
+.container-fluid
+{
+    padding: 0 !important;
+}
+
+#bigBox
+{
+    text-align: left;
+    background-color: #CCC;
+    border: solid 1px #BBB;
+    border-radius: 30px;
+}
+#bigBox img
+{
+    margin-left: 20px;
+}
+
+.card
+{
+    background-color: #CCC;
+    border: none !important;
+}
+
+#smallBox
+{
+    background-color: #BBB;
+    border: solid 1px #AAA;
+    border-radius: 30px;
+}
+
+.smallestBox
+{
+    background-color: #EEE;
+    border: solid 1px #FFF;
+    border-radius: 15px;
+}
+
+#registrationBox
+{
+    /*nie działa, pojecia nie mam dlaczego
+    margin-top: 200px;*/
+}
+.postOptions
+{
+    position: relative;
+}
+.postOptions span
+{
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+}
+
+.row img
 {
     max-width: 300px;
+    max-height: 300px;
 }
 
-.row
-{
-    border: dotted 2px black;
-    max-width: 1200px;
-}
-.overflow-auto
-{
-    max-height: 40vh;
-}
 @media (min-width: 1920px)
 {
     .container
     {
         min-width: 1440px !important;
+    }
+}
+
+@media (max-width: 1200px)
+{
+    #bigBox
+    {
+        text-align: center;
     }
 }

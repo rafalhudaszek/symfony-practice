@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!{% endblock %}
+{% block title %}Stwórz myśl!{% endblock %}
 
 {% block body %}
-    {{ form(form) }}
+    <div class="container">
+        <div id="registrationBox" style="margin-top: 150px;">
+            <h2>Stwórz myśl</h2><br>
+            <h4 class="float-right" style="opacity: 0.7">Pamietaj że swoje myśli możesz bez trudu usunąć ;)</h4>
+            {{ form(form) }}
+        </div>
+
+    </div>
 {% endblock %}

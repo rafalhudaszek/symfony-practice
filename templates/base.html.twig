@@ -4,60 +4,40 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-
+        <script src="https://kit.fontawesome.com/d05ac18085.js" crossorigin="anonymous"></script>
         {% block stylesheets %}
             <link href="{{ asset('CSS/styles.css') }}" type="text/css" rel="stylesheet" />
         {% endblock %}
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff6e6; font-size: 1.4em" >
-            <a class="navbar-brand" style="font-size: 1.8em; padding-left: 3vw" href="{{ path('main') }}">R</a>
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="nav-link nav-item" href="#"><img class="pb-1"src="{{ asset('images/roof.png') }}"/><span class="navbar-text p-2">Hudaszek</span></a>
 
-            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" style="padding-right: 2vw">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('main') }}">Złote myśli</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('registration') }}">Rejestracja <span class="sr-only">(current)</span></a>
-                    </li>
-                    {% if is_granted('IS_ANONYMOUS') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Logowanie <span class="sr-only">(current)</span></a>
-                        </li>
-                    {% endif %}
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj<span class="sr-only">(current)</span></a>
-                        </li>
-                    {% endif %}
-                </ul>
+                <a href="#" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-menu"><i class="navbar-toggler-icon"></i></a>
+                <div class="navbar-collapse collapse" id="navbar-menu">
+                    <div class="navbar-nav ml-auto">
+                        <a class="nav-link nav-item" href="{{ path('main') }}">Home</a>
+                        <a class="nav-link nav-item" href="{{ path('postcreate') }}">Stwórz myśl</a>
+                        {% if is_granted('IS_ANONYMOUS') %}
+                            <a class="nav-link nav-item" href="{{ path('registration') }}">Rejestracja</a>
+                        {% endif %}
+                        {% if is_granted('IS_ANONYMOUS') %}
+                            <a class="nav-link nav-item" href="{{ path('app_login') }}">Logowanie <span class="sr-only">(current)</span></a>
+                        {% endif %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a class="nav-link nav-item" href="{{ path('app_logout') }}">Wyloguj<span class="sr-only">(current)</span></a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </nav>
 
-        <div class="container">
-            <div class="row">
-                <div id="logo">Ten projekt gromadzi cytaty, sentencje i maksymy,<br> które wyszły spod pióra największych myślicieli tego świata.</div>
-            </div>
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            {% for message in app.flashes('warning') %}
-                <div class="alert alert-warning">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            {% for message in app.flashes('error') %}
-                <div class="alert alert-error">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            {% block body %}{% endblock %}
-        </div>
+        {% block body %}{% endblock %}
 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+
+        {% endblock %}
     </body>
 </html>

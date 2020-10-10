@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LoginController!{% endblock %}
+{% block title %}Logowanie{% endblock %}
 
 {% block body %}
-    <h2>login</h2>
+
+    <div class="container">
+        <div id="registrationBox" style="margin-top: 150px;">
+            <h2>Logowanie</h2><br>
+            {{ form(form) }}
+        </div>
+
+    </div>
+
 {% endblock %}

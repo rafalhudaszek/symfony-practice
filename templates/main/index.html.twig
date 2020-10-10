@@ -1,37 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Zlote myśli{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <form action="{{ path("postcreate") }}">
-            <input type="submit" value="Stwórz myśl" />
-        </form>
-    </div>
-    <div class="overflow-auto" style="max-height: 40vh;">
-        {% for post in posts %}
-            <div class="row">
-                <div class="col-12 col-xl-4">
-                    {% if post.photo == null %}
-                        <div class="photo">
-                            <img src={{ asset('images/nullPhoto.png') }}>
-                        </div>
-                    {% else %}
-                        <div class="photo">
-                            <img src="{{ asset('uploads/' ~ post.photo) }}">
-                        </div>
-                    {% endif %}
-                </div>
-                <div class="col-6 offset-xl- 1 col-xl-4">
-                    <h3>{{ post.autor }}</h3><br>
-                    <h4>{{ post.thought }}</h4>
-                </div>
-                <div class="col-6 offset-xl- 1 col-xl-1">
-                    <a class="text-danger" href="{{ path("postdelete", {id:post.id }) }}">
-                        Delete
-                    </a>
-                </div>
+    <div class="container-fluid">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <img class="w-100 d-block pt-5" style="max-height: 62vh" src="{{ asset('images/books3.jpg') }}">
             </div>
-        {% endfor %}
+        </div>
     </div>
+
+    <div class="container" id="bigBox">
+        <div class="row p-4 offset-xl-1 col-xl-10">
+            <div class="text-center" style="font-size: 1.7em">Ten projekt gromadzi cytaty, sentencje i maksymy, które wyszły spod pióra największych myślicieli tego świata</div>
+        </div>
+
+        <div class="card-deck m-3">
+            <div class="card">
+                <a class="btn btn-lg btn-dark m-3" href="#">Polityka</a>
+            </div>
+            <div class="card">
+                <a class="btn btn-lg btn-dark m-3" href="#">Światopogląd</a>
+            </div>
+            <div class="card">
+                <a class="btn btn-lg btn-dark m-3" href="#">Życie</a>
+            </div>
+            <div class="card">
+                <a class="btn btn-lg btn-dark m-3" href="#">Związek</a>
+            </div>
+        </div>
+
+        <div class="row text-center" >
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success ml-2">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+                <div class="alert alert-warning ml-2">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger ml-2">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        <div id="smallBox">
+            {% for post in posts %}
+                <div class="row m-5 smallestBox">
+                    <div class="col-12 col-xl-4">
+                        {% if post.photo == null %}
+                            <img src={{ asset('images/nullPhoto.png') }}>
+                        {% else %}
+                            <img src="{{ asset('uploads/' ~ post.photo) }}">
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-xl-7">
+                        <h3 class="mt-2">{{ post.autor }}</h3><br>
+                        <h4>{{ post.thought }}</h4>
+                    </div>
+                    <div class="col-12  col-xl-1 postOptions">
+                        <a class="text-danger" href="{{ path("postdelete", {id:post.id }) }}">
+                            <img src="{{ asset('images/trash-can-small.png') }}" class="mt-2">
+                        </a><!--
+                        <div id="author">
+                            Autor: {{ post.autor }}
+                        </div>-->
+                        <span class="float-right" style="font-size: 0.6em">Kategoria: {{ post.category }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
 {% endblock %}
