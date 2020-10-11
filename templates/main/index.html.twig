@@ -18,16 +18,16 @@
 
         <div class="card-deck m-3">
             <div class="card">
-                <a class="btn btn-lg btn-dark m-3" href="#">Polityka</a>
+                <a class="btn btn-lg btn-dark m-3" href="{{ path('mainPolityka') }}">Polityka</a>
             </div>
             <div class="card">
-                <a class="btn btn-lg btn-dark m-3" href="#">Światopogląd</a>
+                <a class="btn btn-lg btn-dark m-3" href="{{ path('mainSwiatopoglad') }}">Światopogląd</a>
             </div>
             <div class="card">
-                <a class="btn btn-lg btn-dark m-3" href="#">Życie</a>
+                <a class="btn btn-lg btn-dark m-3" href="{{ path('mainZycie') }}">Życie</a>
             </div>
             <div class="card">
-                <a class="btn btn-lg btn-dark m-3" href="#">Związek</a>
+                <a class="btn btn-lg btn-dark m-3" href="{{ path('mainZwiazek') }}">Związek</a>
             </div>
         </div>
 
@@ -63,12 +63,14 @@
                         <h4>{{ post.thought }}</h4>
                     </div>
                     <div class="col-12  col-xl-1 postOptions">
-                        <a class="text-danger" href="{{ path("postdelete", {id:post.id }) }}">
-                            <img src="{{ asset('images/trash-can-small.png') }}" class="mt-2">
-                        </a><!--
-                        <div id="author">
-                            Autor: {{ post.autor }}
-                        </div>-->
+                        {% if post.user == actualUser %}
+                            <a class="text-danger" href="{{ path("postdelete", {id:post.id }) }}">
+                                <img src="{{ asset('images/trash-can-small.png') }}" class="mt-2">
+                            </a>
+                        {% endif %}
+                        <div class="float-right" style="font-size: 0.6em">
+                            Autor: {{ post.user }}
+                        </div>
                         <span class="float-right" style="font-size: 0.6em">Kategoria: {{ post.category }}</span>
                     </div>
                 </div>

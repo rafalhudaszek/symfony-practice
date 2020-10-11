@@ -33,6 +33,11 @@ class Post
     private $category;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="post")
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
@@ -86,6 +91,18 @@ class Post
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

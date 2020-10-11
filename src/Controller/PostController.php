@@ -22,9 +22,7 @@ class PostController extends AbstractController
      */
     public function index()
     {
-        return $this->render('post/index.html.twig', [
-            'controller_name' => 'PostController',
-        ]);
+        return $this->render('post/index.html.twig');
     }
 
     /**
@@ -48,6 +46,7 @@ class PostController extends AbstractController
         if($form->isSubmitted())
         {
             $this->addFlash('success', 'Post został utworzony');
+            $post->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
 
             /** @var UploadedFile $file */
